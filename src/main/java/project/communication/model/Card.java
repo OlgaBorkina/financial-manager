@@ -2,6 +2,7 @@ package project.communication.model;
 
 import java.io.Serializable;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -17,14 +18,17 @@ import lombok.Setter;
 public class Card implements Serializable{
 	
 	private static final long serialVersionUID = -4928139185368902603L;
-
 	
 	@Id
-	Integer numberCard;
+	@Column(name = "CARDNUMBER")
+	Integer cardNumber;
+//	@Column(name = "CARDYEAR")
+	Integer cardYear;
+//	@Column(name = "CARDMONTH")
+	Integer cardMonth;
+//	@Column(name = "CARDFULLNAME")
+	String cardFullName;
 	
-	Integer year;
-	Integer month;
-	
-	String fullName;
+
 
 }
