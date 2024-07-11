@@ -9,7 +9,8 @@ import lombok.Getter;
 public class BriefcaseDto {
 	
 	String nameCase;
-	String login;
+	Set<CardDto> cards;
+//	String login;
 	Set<WalletDto> wallets;
 	String nameManager;
 

@@ -11,7 +11,7 @@ import project.communication.model.Coin;
 public class WalletDto {
 	String idWallet;
 	String nameWallet;
-	Map<CoinDto,Double> balance;
+	Map<String,Double> balance;
 	
 
 }

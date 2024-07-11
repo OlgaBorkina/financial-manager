@@ -1,6 +1,7 @@
 package project.communication.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -19,7 +20,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-
 public class Briefcase implements Serializable{
 	
 	private static final long serialVersionUID = 7192590693656603147L;
@@ -31,14 +31,29 @@ public class Briefcase implements Serializable{
 			joinColumns = @JoinColumn(name = "BRIEFCASE_NAME"),
 			inverseJoinColumns = @JoinColumn(name = "CARDNUMBER")
 			)
-	Set <Card> cards;
+	Set <Card> cards = new HashSet<Card>();
 	@OneToMany
 	@JoinTable(
 			name = "BRIEFCASE_WALLET",
 			joinColumns = @JoinColumn(name = "BRIEFCASE_NAME"),
 			inverseJoinColumns = @JoinColumn(name = "IDWALLET")
 			)
-	Set<Wallet> wallets;
+//	@JsonManagedReference
+	Set<Wallet> wallets = new HashSet<Wallet>();
 	String managerName;
+	
+
+	
+	
+//	public Briefcase(String briefcaseName, Set<Card> cards, String managerName) {
+//		this.briefcaseName = briefcaseName;
+//		this.cards = cards;
+//		this.managerName = managerName;
+//	}
+	
+	
+	
+	
+	
 
 }
