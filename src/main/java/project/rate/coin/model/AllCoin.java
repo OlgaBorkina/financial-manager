@@ -18,7 +18,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @EqualsAndHashCode(of = "coinCode")
-@Table(name = "ALL_COINS")
+@Table(name = "ALL_COINS1")
 public class AllCoin  implements Serializable{
 	
 	private static final long serialVersionUID = -1617406424110188737L;
@@ -26,8 +26,20 @@ public class AllCoin  implements Serializable{
 	@Id
 	String coinCode;
 	String coinName;
-	
 	Boolean used;
+	
+	
+	public AllCoin(String coinCode, Boolean used) {
+		this.coinCode = coinCode;
+		this.used = used;
+	}
+
+
+	@Override
+	public String toString() {
+		return "AllCoin [coinCode=" + coinCode + ", coinName=" + coinName + ", used=" + used + "]";
+	}
+	
 	
 	
 	
