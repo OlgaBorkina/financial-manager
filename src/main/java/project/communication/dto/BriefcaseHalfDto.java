@@ -4,17 +4,12 @@ import java.util.Set;
 
 import lombok.Getter;
 
-
 @Getter
-public class BriefcaseDto {
-	
+public class BriefcaseHalfDto {
 	String briefcaseName;
-	Set<CardDto> cards;
-//	String login;
 	Set<WalletDto> wallets;
 	String managerName;
-	Double myCash;
+	Double plusToMyCash;
 	String currencyCode;
-	
-
+	CardDto cardUsed;
 }

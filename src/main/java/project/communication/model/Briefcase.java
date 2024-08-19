@@ -10,7 +10,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -41,19 +40,33 @@ public class Briefcase implements Serializable{
 //	@JsonManagedReference
 	Set<Wallet> wallets = new HashSet<Wallet>();
 	String managerName;
+	Double myCash;
+	String currencyCode;
 	
-
+	public Briefcase(String briefcaseName, Set<Card> cards, Set<Wallet> wallets, String managerName) {
+		this.briefcaseName = briefcaseName;
+		this.cards = cards;
+		this.wallets = wallets;
+		this.managerName = managerName;
+	}
 	
+	public boolean addMyCash(Double plusToMyCash) {
+		myCash += plusToMyCash;
+		return true;
+		
+	}
+	public Double enoughMoneyInAccount (Double summ) {
+		if(myCash-summ>0) {
+			return summ;
+		}else {
+			return myCash-summ;
+		}
+	}
 	
-//	public Briefcase(String briefcaseName, Set<Card> cards, String managerName) {
-//		this.briefcaseName = briefcaseName;
-//		this.cards = cards;
-//		this.managerName = managerName;
-//	}
-	
-	
-	
-	
+	public boolean takeMyCash (Double minusFromMyCash) {
+		myCash = myCash - minusFromMyCash;
+		return false;
+	}
 	
 
 }

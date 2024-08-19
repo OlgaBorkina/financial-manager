@@ -44,5 +44,10 @@ public class Rate {
 		this.rates = rates;
 	}
 	
+	public boolean checkCurrencyCode(String currencyCode) {
+		return rates.containsKey(currencyCode);
+	}
+	
+	
 	
 }

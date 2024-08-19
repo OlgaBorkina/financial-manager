@@ -8,9 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -62,26 +59,14 @@ public class RateCoinServiceImpl implements RateCoinService {
 		headers.add("x-api-key", "6f099acf-0c45-404c-a84d-7607f14dfc84");
 		URI url = new URI("https://api.livecoinwatch.com/coins/list");
 
-//		String bodyReq = "{\n\t\"currency\": \"USD\",\n\t\"sort\": \"rank\",\n\t\"order\": \"ascending\",\n\t\"offset\": 0,\n\t\"limit\": 1,\n\t\"meta\": false\n}";
-		
 		String partBody = coinFromFile();
-//		System.out.println(partBody);
+
 		String bodyReq = "{\n\t\"codes\": [\"ETH\",\"BTC\",\"BNB\"],\n\t\"currency\": \"USD\",\n\t\"sort\": \"code\",\n\t\"order\": \"ascending\",\n\t\"offset\": 0,\n\t\"limit\": 10,\n\t\"meta\": false\n}";
 		String bodyReq1 = "{\n\t\"codes\": " + partBody + ",\n\t\"currency\": \"USD\",\n\t\"sort\": \"code\",\n\t\"order\": \"ascending\",\n\t\"offset\": 0,\n\t\"limit\": 10,\n\t\"meta\": false\n}";
 		
-		//		String bodyReq1 = "\"{\n\t\"codes\": " + partBody + ",\n\t\"currency\": \"USD\",\n\t\"sort\": \"code\",\n\t\"order\": \"ascending\",\n\t\"offset\": 0,\n\t\"limit\": 10,\n\t\"meta\": false\n}\"";
-		
-		
-//		System.out.println(bodyReq);
-//		System.out.println(bodyReq1);
-
 		RequestEntity<String> request = new RequestEntity<String>(bodyReq1, headers, HttpMethod.POST, url);
 		ResponseEntity<RateCoinDto[]> response = restTemplate.exchange(request, RateCoinDto[].class);
 		RateCoinDto[] responceBody = response.getBody();
-
-//		System.out.println(responceBody[0].getCode());
-//		System.out.println(responceBody[1].getCode());
-//		System.out.println(responceBody[2].getCode());
 		
 		for (int i = 0; i < responceBody.length; i++) {
 			System.out.println(responceBody[i].getCode());
@@ -125,31 +110,7 @@ public class RateCoinServiceImpl implements RateCoinService {
 		}
 		}
 		
-		
-//
-//		CoinBnb coinBnb = new CoinBnb(LocalDateTime.now(), responceBody[0].getRate(), responceBody[0].getVolume(),
-//				responceBody[0].getCap(), responceBody[0].getDelta().get("hour"), responceBody[0].getDelta().get("day"),
-//				responceBody[0].getDelta().get("week"), responceBody[0].getDelta().get("month"),
-//				responceBody[0].getDelta().get("quarter"), responceBody[0].getDelta().get("year"),
-//				responceBody[0].getCode());
-//
-//		rateCoinRepository.save(coinBnb);
 
-//		CoinBtc coinBtc = new CoinBtc(LocalDateTime.now(), responceBody[1].getRate(), responceBody[1].getVolume(),
-//				responceBody[1].getCap(), responceBody[1].getDelta().get("hour"), responceBody[1].getDelta().get("day"),
-//				responceBody[1].getDelta().get("week"), responceBody[1].getDelta().get("month"),
-//				responceBody[1].getDelta().get("quarter"), responceBody[1].getDelta().get("year"),
-//				responceBody[1].getCode());
-//
-//		rateCoinRepository.save(coinBtc);
-//
-//		CoinEth coinEth = new CoinEth(LocalDateTime.now(), responceBody[2].getRate(), responceBody[2].getVolume(),
-//				responceBody[2].getCap(), responceBody[2].getDelta().get("hour"), responceBody[2].getDelta().get("day"),
-//				responceBody[2].getDelta().get("week"), responceBody[2].getDelta().get("month"),
-//				responceBody[2].getDelta().get("quarter"), responceBody[2].getDelta().get("year"),
-//				responceBody[2].getCode());
-//
-//		rateCoinRepository.save(coinEth);
 
 		return true;
 	}
@@ -245,3 +206,27 @@ public class RateCoinServiceImpl implements RateCoinService {
 
 }
 
+//
+//CoinBnb coinBnb = new CoinBnb(LocalDateTime.now(), responceBody[0].getRate(), responceBody[0].getVolume(),
+//		responceBody[0].getCap(), responceBody[0].getDelta().get("hour"), responceBody[0].getDelta().get("day"),
+//		responceBody[0].getDelta().get("week"), responceBody[0].getDelta().get("month"),
+//		responceBody[0].getDelta().get("quarter"), responceBody[0].getDelta().get("year"),
+//		responceBody[0].getCode());
+//
+//rateCoinRepository.save(coinBnb);
+
+//CoinBtc coinBtc = new CoinBtc(LocalDateTime.now(), responceBody[1].getRate(), responceBody[1].getVolume(),
+//		responceBody[1].getCap(), responceBody[1].getDelta().get("hour"), responceBody[1].getDelta().get("day"),
+//		responceBody[1].getDelta().get("week"), responceBody[1].getDelta().get("month"),
+//		responceBody[1].getDelta().get("quarter"), responceBody[1].getDelta().get("year"),
+//		responceBody[1].getCode());
+//
+//rateCoinRepository.save(coinBtc);
+//
+//CoinEth coinEth = new CoinEth(LocalDateTime.now(), responceBody[2].getRate(), responceBody[2].getVolume(),
+//		responceBody[2].getCap(), responceBody[2].getDelta().get("hour"), responceBody[2].getDelta().get("day"),
+//		responceBody[2].getDelta().get("week"), responceBody[2].getDelta().get("month"),
+//		responceBody[2].getDelta().get("quarter"), responceBody[2].getDelta().get("year"),
+//		responceBody[2].getCode());
+//
+//rateCoinRepository.save(coinEth);

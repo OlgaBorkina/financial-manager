@@ -1,7 +1,5 @@
 package project.communication.dto;
 
-import java.util.Set;
-
 import lombok.Getter;
 
 @Getter

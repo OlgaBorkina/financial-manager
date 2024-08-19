@@ -1,6 +1,7 @@
 package project.communication.model;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,13 +22,20 @@ public class Card implements Serializable{
 	
 	@Id
 	@Column(name = "CARDNUMBER")
-	Integer cardNumber;
+	BigInteger cardNumber;
 //	@Column(name = "CARDYEAR")
 	Integer cardYear;
 //	@Column(name = "CARDMONTH")
 	Integer cardMonth;
 //	@Column(name = "CARDFULLNAME")
 	String cardFullName;
+	
+	String currencyCode;
+	
+	
+	
+	
+	
 	
 
 
